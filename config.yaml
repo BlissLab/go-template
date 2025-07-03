@@ -1,0 +1,4 @@
+app: hello
+
+log: 
+  level: debug
