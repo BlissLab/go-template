@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"go-template/config"
-	"go-template/utils/log"
+	"go-template/internal/utils/log"
 )
 
 func Init(filename string) error {

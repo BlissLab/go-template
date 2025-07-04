@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"go-template/cmd"
 	"go-template/config"
+	"go-template/internal/api/router"
 	"log/slog"
 
 	"github.com/common-nighthawk/go-figure"
@@ -13,6 +15,7 @@ func Init() cobra.Command {
 	command := cobra.Command{
 		Use: "server",
 		RunE: func(c *cobra.Command, args []string) error {
+			ctx := context.TODO()
 			if path, err := c.Flags().GetString("config"); err != nil {
 				return err
 			} else if err := cmd.Init(path); err != nil {
@@ -20,7 +23,8 @@ func Init() cobra.Command {
 			}
 			myFigure := figure.NewFigure(config.C.APP, "", true)
 			myFigure.Print()
-			return nil
+			err := router.Run(ctx)
+			return err
 		},
 	}
 	command.PersistentFlags().String("config", "config.yaml", "Specify config file path")

@@ -11,6 +11,7 @@ var C Config
 type Config struct {
 	APP string `yaml:"app"`
 	Log Log    `yaml:"log"`
+	API API    `yaml:"api"`
 }
 
 func LoadFile(filename string) error {
